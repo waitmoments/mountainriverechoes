@@ -29,7 +29,12 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))   # 仓库根(
 from musicdl import musicdl
 from musicdl.modules import MusicClientBuilder, LyricSearchClient
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# PyInstaller 冻结态：数据文件(templates/ethnos_cache)随包解压到 _MEIPASS，
+# 用 _MEIPASS 作为 BASE_DIR；非冻结(源码/venv)态保持原逻辑。
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    BASE_DIR = Path(sys._MEIPASS)
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
 DOWNLOAD_DIR = BASE_DIR / 'downloads'
 DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
