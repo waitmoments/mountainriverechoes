@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>傣音廊 · 傣族音乐</title>
+<link rel="icon" href="/assets/icon.png">
+<link rel="stylesheet" href="/ui/app.css">
+</head>
+<body>
+
+<div id="boot" class="boot">
+  <div class="boot-inner">
+    <img src="/assets/icon.png" alt="">
+    <h1>傣音廊</h1>
+    <p id="bootTip">正在唤醒傣族曲库…</p>
+    <div class="boot-bar"><i></i></div>
+  </div>
+</div>
+
+<div class="app" id="app" hidden>
+
+  <!-- ============ 侧栏 ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="/assets/icon.png" alt="傣音廊">
+      <div class="brand-txt">
+        <b>傣音廊</b>
+        <span>Dai Music Hall</span>
+      </div>
+    </div>
+
+    <nav class="nav" id="navMain">
+      <a data-view="home" class="on"><svg viewBox="0 0 24 24"><path d="M12 3 2 11h3v9h6v-6h2v6h6v-9h3z"/></svg>推荐</a>
+      <a data-view="all"><svg viewBox="0 0 24 24"><path d="M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg>全部歌曲</a>
+      <a data-view="singers"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8m0 2c-4 0-8 2-8 4.5V21h16v-2.5C20 16 16 14 12 14"/></svg>歌手</a>
+      <a data-view="albums"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m0 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>专辑</a>
+      <a data-view="sources"><svg viewBox="0 0 24 24"><path d="M10 18H4v-2h6zm4-6H4v-2h10zm4-6H4V4h14zM4 20h16v-2H4z"/></svg>音源</a>
+    </nav>
+
+    <div class="nav-sec">我的音乐</div>
+    <nav class="nav" id="navMine">
+      <a data-view="fav"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.1-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 15.9 12 21 12 21"/></svg>我喜欢的<span class="cnt" id="cntFav">0</span></a>
+      <a data-view="recent"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7v3l4-4-4-4z"/><path d="M11 8h2v5h4v2h-6z"/></svg>最近播放</a>
+    </nav>
+
+    <div class="nav-sec pl-head">
+      我的歌单
+      <button id="btnNewPl" title="新建歌单"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg></button>
+    </div>
+    <nav class="nav pl-list" id="plList"></nav>
+
+    <div class="dai-pattern" aria-hidden="true"></div>
+    <div class="side-foot">
+      <span id="libInfo">—</span>
+    </div>
+  </aside>
+
+  <!-- ============ 主区 ============ -->
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-nav">
+        <button id="btnBack" title="后退"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg></button>
+        <button id="btnFwd" title="前进"><svg viewBox="0 0 24 24"><path d="M8.6 7.4 10 6l6 6-6 6-1.4-1.4L13.2 12z"/></svg></button>
+      </div>
+      <div class="search">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9"/></svg>
+        <input id="q" type="search" placeholder="搜索傣族歌曲、歌手或专辑" autocomplete="off">
+        <kbd>/</kbd>
+      </div>
+      <div class="tb-right">
+        <button class="icon-btn" id="btnSkin" title="更换皮肤"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1 0 1.6-.8 1.6-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-3.9-3.6-7.1-8-7.1zM6.5 12A1.5 1.5 0 1 1 6.5 9a1.5 1.5 0 0 1 0 3zm3-4A1.5 1.5 0 1 1 9 6.5 1.5 1.5 0 0 1 9.5 8zm5 0A1.5 1.5 0 1 1 14 6.5 1.5 1.5 0 0 1 14.5 8zm3 4A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 17.5 12z"/></svg></button>
+        <span class="chip" id="chipStat">—</span>
+      </div>
+    </header>
+    <section class="view" id="view"></section>
+  </main>
+</div>
+
+<!-- ============ 播放条 ============ -->
+<footer class="playbar" id="playbar" hidden>
+  <div class="pb-prog" id="pbProg"><i id="pbProgIn"></i><b id="pbProgDot"></b></div>
+  <div class="pb-left">
+    <div class="pb-cover" id="pbCover"><img src="/assets/cv_peacock.png" alt=""><span class="pb-mask"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></div>
+    <div class="pb-meta">
+      <div class="pb-name" id="pbName">未播放</div>
+      <div class="pb-artist" id="pbArtist">—</div>
+    </div>
+    <button class="icon-btn" id="btnLike" title="喜欢"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.1-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 15.9 12 21 12 21"/></svg></button>
+  </div>
+
+  <div class="pb-center">
+    <div class="pb-btns">
+      <button class="icon-btn" id="btnMode" title="播放模式"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z"/></svg></button>
+      <button class="icon-btn" id="btnPrev" title="上一首"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm12 0-9 6 9 6z"/></svg></button>
+      <button class="play-btn" id="btnPlay" title="播放/暂停"><svg viewBox="0 0 24 24" id="icoPlay"><path d="M8 5v14l11-7z"/></svg></button>
+      <button class="icon-btn" id="btnNext" title="下一首"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 6l9 6-9 6z"/></svg></button>
+      <button class="icon-btn" id="btnQueue" title="播放队列"><svg viewBox="0 0 24 24"><path d="M3 6h13v2H3zm0 5h13v2H3zm0 5h9v2H3zm14-4 5 3-5 3z"/></svg></button>
+    </div>
+    <div class="pb-time"><span id="tCur">00:00</span><span id="tAll">00:00</span></div>
+  </div>
+
+  <div class="pb-right">
+    <span class="pb-src" id="pbSrc"></span>
+    <button class="icon-btn" id="btnVol" title="音量"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zm13 3a4 4 0 0 0-2-3.5v7A4 4 0 0 0 17 12m-2-7v2a7 7 0 0 1 0 10v2a9 9 0 0 0 0-14"/></svg></button>
+    <input id="vol" class="vol" type="range" min="0" max="100" value="80">
+    <button class="icon-btn" id="btnLyric" title="歌词"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 5h10v2H4zm0 5h16v2H4zm0 5h10v2H4z"/></svg></button>
+  </div>
+</footer>
+
+<!-- ============ 播放详情 / 歌词页 ============ -->
+<div class="player" id="player">
+  <div class="pl-bg" id="plBg"></div>
+  <button class="pl-close" id="plClose"><svg viewBox="0 0 24 24"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg></button>
+  <div class="pl-body">
+    <div class="pl-left">
+      <div class="pl-disc" id="plDisc"><img id="plCover" src="/assets/cv_peacock.png" alt=""></div>
+      <div class="pl-title" id="plTitle">—</div>
+      <div class="pl-artist" id="plArtist">—</div>
+      <div class="pl-album" id="plAlbum"></div>
+    </div>
+    <div class="pl-right">
+      <div class="pl-lyric" id="plLyric"><p class="ph">纯音乐，请欣赏</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 播放队列 ============ -->
+<div class="queue" id="queue">
+  <div class="q-head"><b>播放队列</b><span id="qCount"></span><button id="qClear">清空</button></div>
+  <div class="q-list" id="qList"></div>
+</div>
+
+<!-- ============ 右键菜单 ============ -->
+<div class="ctxmenu" id="ctxmenu"></div>
+<div class="skin-pop" id="skinPop"></div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="modal-box" id="modalBox"></div></div>
+
+<audio id="audio" preload="none"></audio>
+<script src="/ui/app.js"></script>
+</body>
+</html>

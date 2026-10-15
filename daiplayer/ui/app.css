@@ -1,0 +1,456 @@
+/* ============================================================
+   傣音廊 · 样式
+   配色取傣锦三色: 孔雀绿(主) / 傣金(点缀) / 傣红(强调)
+   ============================================================ */
+:root{
+  --brand:#0E6E63;      --brand-d:#0A544C;  --brand-l:#12A594;
+  --gold:#D9A441;       --gold-l:#EFD08C;
+  --red:#C8452F;        --red-d:#9E3522;
+  --bg:#F6F7F9;         --panel:#FFFFFF;    --side:#F1F3F5;
+  --line:#E6E9EC;       --line-2:#EEF1F3;
+  --tx:#1E2329;         --tx2:#6A7280;      --tx3:#9AA2AE;
+  --sel:#EAF6F4;        --sel-tx:#0E6E63;
+  --r:10px;
+  /* 傣锦纹样: 菱形织锦格 + 孔雀眼(金瞳朱心) */
+  --dai:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='none' stroke='%230E6E63' stroke-width='1'><path d='M20 2 L38 20 L20 38 L2 20 Z'/><path d='M20 9 L31 20 L20 31 L9 20 Z'/></g><circle cx='20' cy='20' r='3.2' fill='%23D9A441'/><circle cx='20' cy='20' r='1.4' fill='%23C8452F'/></svg>");
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font:14px/1.5 "Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB",system-ui,sans-serif;
+  color:var(--tx);background:var(--bg);overflow:hidden;-webkit-font-smoothing:antialiased;
+}
+svg{width:18px;height:18px;fill:currentColor;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#D2D8DE;border-radius:9px;border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#B9C2CA;background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ---------------- 启动页 ---------------- */
+.boot{position:fixed;inset:0;display:grid;place-items:center;background:
+  radial-gradient(900px 500px at 50% 0%,#0E6E63 0%,#0A4A44 55%,#07332F 100%);z-index:99}
+.boot-inner{text-align:center;color:#fff}
+.boot-inner img{width:96px;height:96px;border-radius:22px;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.boot-inner h1{font-size:30px;letter-spacing:.32em;margin:20px 0 6px;font-weight:600}
+.boot-inner p{color:#BFE3DC;margin:0 0 20px;font-size:13px;letter-spacing:.06em}
+.boot-bar{width:230px;height:3px;background:rgba(255,255,255,.18);border-radius:3px;overflow:hidden;margin:0 auto}
+.boot-bar i{display:block;height:100%;width:40%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-l));animation:boot 1.15s ease-in-out infinite}
+@keyframes boot{0%{margin-left:-40%}100%{margin-left:100%}}
+
+/* ---------------- 框架 ---------------- */
+.app{display:grid;grid-template-columns:208px 1fr;grid-template-rows:1fr;height:100%;padding-bottom:78px}
+.sidebar{background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.brand{display:flex;align-items:center;gap:10px;padding:16px 16px 12px}
+.brand img{width:34px;height:34px;border-radius:9px;box-shadow:0 3px 10px rgba(14,110,99,.28)}
+.brand-txt{display:flex;flex-direction:column;line-height:1.2}
+.brand-txt b{font-size:17px;letter-spacing:.14em}
+.brand-txt span{font-size:9px;color:var(--tx3);letter-spacing:.14em;text-transform:uppercase}
+.nav{display:flex;flex-direction:column;gap:1px;padding:2px 8px}
+.nav a{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;color:#3D454F;cursor:pointer;user-select:none;font-size:13.5px}
+.nav a svg{width:17px;height:17px;color:#6C7580;flex:none}
+.nav a:hover{background:var(--side)}
+.nav a.on{background:var(--panel);color:var(--brand);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.nav a.on svg{color:var(--brand)}
+.nav a .cnt{margin-left:auto;font-size:11px;color:var(--tx3);font-weight:400}
+.nav-sec{padding:14px 18px 4px;font-size:11px;color:var(--tx3);letter-spacing:.1em;display:flex;align-items:center;justify-content:space-between}
+.pl-head button{width:20px;height:20px;border-radius:5px;display:grid;place-items:center;color:var(--tx2)}
+.pl-head button:hover{background:#E1E5E9;color:var(--brand)}
+.pl-head button svg{width:15px;height:15px}
+.pl-list{overflow:auto;flex:1}
+.pl-list a svg{width:15px;height:15px}
+.pl-list a .del{margin-left:auto;opacity:0;width:16px;height:16px;color:var(--tx3)}
+.pl-list a:hover .del{opacity:1}
+.pl-list a .del:hover{color:var(--red)}
+.pl-list .empty{color:var(--tx3);font-size:12px;padding:6px 12px}
+.dai-pattern{height:56px;margin:8px 0 0;background-image:var(--dai);background-size:36px 36px;opacity:.42;mask-image:linear-gradient(to bottom,transparent,#000 45%,transparent)}
+.side-foot{padding:8px 16px 12px;font-size:10.5px;color:var(--tx3);line-height:1.5;border-top:1px solid var(--line)}
+
+.main{background:var(--panel);display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);z-index:5}
+.tb-nav{display:flex;gap:2px}
+.tb-nav button{width:28px;height:28px;border-radius:50%;background:#F1F3F5;display:grid;place-items:center;color:#5B6470}
+.tb-nav button:hover{background:#E6E9EC;color:var(--brand)}
+.tb-nav svg{width:17px;height:17px}
+.search{position:relative;width:300px;display:flex;align-items:center}
+.search svg{position:absolute;left:11px;width:15px;height:15px;color:var(--tx3)}
+.search input{width:100%;height:34px;border-radius:17px;border:1px solid transparent;background:#F1F3F5;padding:0 40px 0 33px;font-size:13px;outline:none;color:var(--tx)}
+.search input:focus{background:#fff;border-color:var(--brand-l);box-shadow:0 0 0 3px rgba(18,165,148,.13)}
+.search kbd{position:absolute;right:10px;font-size:10px;color:var(--tx3);border:1px solid var(--line);border-radius:4px;padding:0 5px;background:#fff;font-family:inherit}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.chip{font-size:11.5px;color:var(--tx2);background:#F1F3F5;border-radius:14px;padding:4px 11px}
+.chip b{color:var(--brand)}
+
+.view{flex:1;overflow:auto;padding:22px 26px 30px;scroll-behavior:smooth}
+.view.wide{padding:0 0 30px}
+
+/* ---------------- 通用块 ---------------- */
+.sec{margin:0 0 30px}
+.sec-h{display:flex;align-items:baseline;gap:10px;margin:0 0 14px}
+.sec-h h2{font-size:17.5px;margin:0;font-weight:600;letter-spacing:.02em}
+.sec-h .more{margin-left:auto;font-size:12px;color:var(--tx2);cursor:pointer;display:flex;align-items:center;gap:3px}
+.sec-h .more:hover{color:var(--brand)}
+.sec-h .more svg{width:14px;height:14px}
+.crumb{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--tx2);margin-bottom:16px}
+.crumb a{cursor:pointer;color:var(--tx2)}
+.crumb a:hover{color:var(--brand)}
+.crumb svg{width:13px;height:13px;color:var(--tx3)}
+
+/* banner */
+.banner{position:relative;height:212px;border-radius:14px;overflow:hidden;margin-bottom:26px;box-shadow:0 8px 26px rgba(11,60,56,.16)}
+.banner img{width:100%;height:100%;object-fit:cover;display:block}
+.banner .b-in{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,42,39,.80) 0%,rgba(6,42,39,.42) 48%,transparent 78%);display:flex;flex-direction:column;justify-content:center;padding:0 40px;color:#fff}
+.banner h1{margin:0 0 8px;font-size:27px;letter-spacing:.06em;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.banner p{margin:0 0 18px;font-size:13px;color:#CDEBE5;max-width:460px;line-height:1.7}
+.banner .b-btns{display:flex;gap:10px}
+.btn{height:34px;padding:0 20px;border-radius:17px;font-size:13px;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--tx);transition:.15s}
+.btn svg{width:15px;height:15px}
+.btn:hover{transform:translateY(-1px)}
+.btn.pri{background:var(--brand);color:#fff}
+.btn.pri:hover{background:var(--brand-d)}
+.btn.gho{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.5)}
+.btn.gho:hover{background:rgba(255,255,255,.26)}
+
+/* 快捷入口 */
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.qcard{position:relative;border-radius:12px;padding:16px 16px 14px;color:#fff;cursor:pointer;overflow:hidden;transition:.18s;min-height:86px;display:flex;flex-direction:column;justify-content:space-between}
+.qcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.qcard b{font-size:16px;font-weight:600}
+.qcard span{font-size:11.5px;opacity:.86}
+.qcard::after{content:"";position:absolute;right:-22px;bottom:-26px;width:92px;height:92px;border-radius:50%;background:rgba(255,255,255,.14)}
+.qcard svg{position:absolute;right:12px;top:12px;width:26px;height:26px;opacity:.42}
+
+/* 卡片网格 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:18px}
+.card{cursor:pointer;transition:.18s}
+.card:hover{transform:translateY(-3px)}
+.card .cv{position:relative;width:100%;aspect-ratio:1;border-radius:var(--r);overflow:hidden;background:#EDF0F2;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.card .cv img{width:100%;height:100%;object-fit:cover;display:block}
+.card .cv .plays{position:absolute;right:7px;top:7px;background:rgba(0,0,0,.5);color:#fff;font-size:10.5px;border-radius:10px;padding:2px 7px;backdrop-filter:blur(4px)}
+.card .cv .pbtn{position:absolute;right:8px;bottom:8px;width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;opacity:0;transform:translateY(6px);transition:.18s;box-shadow:0 4px 12px rgba(14,110,99,.4)}
+.card:hover .cv .pbtn{opacity:1;transform:none}
+.card .cv .pbtn:hover{background:var(--brand-d)}
+.card .cv .pbtn svg{width:17px;height:17px}
+.card .t{margin:9px 0 2px;font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .s{font-size:11.5px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card.round .cv{border-radius:50%}
+.card.round{cursor:pointer;text-align:center}
+.card.round .t{text-align:center}
+
+/* 歌曲列表 */
+.slist{border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2)}
+.shead,.srow{display:grid;grid-template-columns:52px minmax(150px,1fr) 180px 150px 64px 52px 60px;align-items:center;gap:10px;padding:0 14px}
+.shead{height:34px;font-size:11.5px;color:var(--tx3);background:#FAFBFC;border-bottom:1px solid var(--line-2);letter-spacing:.04em}
+.srow{height:56px;border-bottom:1px solid var(--line-2);cursor:default;position:relative}
+.srow:last-child{border-bottom:0}
+.srow:hover{background:var(--side)}
+.srow.on{background:var(--sel)}
+.srow.on .nm{color:var(--sel-tx);font-weight:600}
+.srow .ix{font-size:12.5px;color:var(--tx3);display:flex;align-items:center;justify-content:center;height:100%}
+.srow .ix .num{display:block}
+.srow:hover .ix .num,.srow.on .ix .num{display:none}
+.srow .ix .go{display:none;width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;align-items:center;justify-content:center}
+.srow:hover .ix .go,.srow.on .ix .go{display:flex}
+.srow .ix .go svg{width:13px;height:13px}
+.srow.on .ix .go{background:transparent;color:var(--brand)}
+.srow .tcell{display:flex;align-items:center;gap:11px;overflow:hidden}
+.srow .tcell img{width:38px;height:38px;border-radius:6px;object-fit:cover;flex:none;background:#EDF0F2}
+.srow .tcell .dd{overflow:hidden}
+.srow .nm{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow .tag{display:inline-block;font-size:9.5px;color:var(--brand);border:1px solid rgba(14,110,99,.35);border-radius:3px;padding:0 3px;margin-left:6px;vertical-align:1px;line-height:14px}
+.srow .ar,.srow .al{font-size:12.5px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow .ar a,.srow .al a{cursor:pointer}
+.srow .ar a:hover,.srow .al a:hover{color:var(--brand);text-decoration:underline}
+.srow .src{font-size:11px;color:var(--tx3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow .du{font-size:12px;color:var(--tx3);text-align:right}
+.srow .ops{display:flex;gap:2px;justify-content:flex-end;opacity:0}
+.srow:hover .ops{opacity:1}
+.srow .ops button{width:24px;height:24px;border-radius:5px;display:grid;place-items:center;color:var(--tx2)}
+.srow .ops button:hover{background:#E6E9EC;color:var(--brand)}
+.srow .ops button.on{color:var(--red);opacity:1}
+.srow .ops svg{width:15px;height:15px}
+.slist-head{display:flex;align-items:center;gap:14px;padding:6px 4px 16px}
+.slist-head .big-play{width:44px;height:44px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(14,110,99,.34)}
+.slist-head .big-play:hover{background:var(--brand-d)}
+.slist-head .big-play svg{width:20px;height:20px}
+.slist-head .info{font-size:12.5px;color:var(--tx2)}
+.slist-head .info b{color:var(--tx)}
+.more-row{text-align:center;padding:16px}
+
+/* 详情头 */
+.detail{display:flex;gap:24px;margin-bottom:26px}
+.detail .dc{width:172px;height:172px;border-radius:14px;overflow:hidden;flex:none;box-shadow:0 10px 30px rgba(0,0,0,.16);background:#EDF0F2}
+.detail .dc img{width:100%;height:100%;object-fit:cover}
+.detail .di{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.detail .di .k{font-size:11.5px;color:var(--brand);letter-spacing:.14em;border:1px solid rgba(14,110,99,.4);border-radius:4px;padding:1px 7px;align-self:flex-start;margin-bottom:12px}
+.detail .di h1{margin:0 0 10px;font-size:26px;font-weight:600;letter-spacing:.02em}
+.detail .di .sub{font-size:13px;color:var(--tx2);margin-bottom:16px;line-height:1.8}
+.detail .di .sub b{color:var(--brand)}
+
+/* 歌手页 */
+.artist-hero{display:flex;align-items:flex-end;gap:22px;height:206px;margin:0 0 24px;border-radius:14px;overflow:hidden;position:relative;background:var(--brand-d)}
+.artist-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(2px) brightness(.6);transform:scale(1.06)}
+.artist-hero .ah{position:relative;display:flex;align-items:flex-end;gap:20px;padding:24px 30px;width:100%}
+.artist-hero .av{width:126px;height:126px;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,.7);flex:none;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.artist-hero .av img{position:static;width:100%;height:100%;filter:none;transform:none;object-fit:cover}
+.artist-hero .an{color:#fff;padding-bottom:8px}
+.artist-hero .an .k{font-size:11px;color:var(--gold-l);letter-spacing:.2em;margin-bottom:8px}
+.artist-hero .an h1{margin:0 0 6px;font-size:28px;letter-spacing:.03em}
+.artist-hero .an p{margin:0;font-size:12.5px;color:#C9E5E0}
+
+/* 空态 */
+.empty{display:grid;place-items:center;padding:70px 0;color:var(--tx3);text-align:center}
+.empty svg{width:52px;height:52px;color:#D6DBE0;margin-bottom:14px}
+.empty p{margin:0 0 4px;font-size:14px;color:var(--tx2)}
+.empty small{font-size:12px}
+
+/* ---------------- 播放条 ---------------- */
+.playbar{position:fixed;left:0;right:0;bottom:0;height:78px;background:var(--panel);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 500px 1fr;align-items:center;gap:16px;padding:0 20px;z-index:50;box-shadow:0 -2px 14px rgba(0,0,0,.05);transition:background .3s,border-color .3s}
+/* 歌词页打开时播放条变深色, 与黑胶页融为一体 */
+body.full-player .playbar{background:rgba(9,34,31,.96);border-top-color:rgba(255,255,255,.09);box-shadow:0 -6px 26px rgba(0,0,0,.4)}
+body.full-player .pb-name{color:#fff}
+body.full-player .pb-artist,body.full-player .pb-src{color:#9FC9C2}
+body.full-player .pb-src{background:rgba(255,255,255,.09)}
+body.full-player .icon-btn{color:#CBE5E0}
+body.full-player .icon-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+body.full-player .icon-btn.liked{color:#FF8A73}
+body.full-player .pb-cover{border:1px solid rgba(255,255,255,.12)}
+.playbar::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:linear-gradient(90deg,var(--brand),var(--gold),var(--red),var(--brand));opacity:.75}
+.pb-prog{position:absolute;left:0;right:0;top:-3px;height:4px;cursor:pointer;z-index:2}
+.pb-prog i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--brand-l),var(--brand));transition:width .12s linear}
+.pb-prog b{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid var(--brand);transform:translate(-50%,-50%) scale(0);transition:transform .15s;left:0}
+.pb-prog:hover b{transform:translate(-50%,-50%) scale(1)}
+.pb-prog:hover{height:7px;top:-5px}
+.pb-left{display:flex;align-items:center;gap:12px;min-width:0}
+.pb-cover{position:relative;width:52px;height:52px;border-radius:8px;overflow:hidden;flex:none;background:#EDF0F2;cursor:pointer}
+.pb-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.pb-mask{position:absolute;inset:0;background:rgba(0,0,0,.36);display:grid;place-items:center;opacity:0;transition:.16s;color:#fff}
+.pb-mask svg{width:22px;height:22px}
+.pb-cover:hover .pb-mask{opacity:1}
+.pb-meta{min-width:0}
+.pb-name{font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.pb-name:hover{color:var(--brand)}
+.pb-artist{font-size:11.5px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.pb-artist:hover{color:var(--brand)}
+.icon-btn{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#4E5763;flex:none}
+.icon-btn:hover{background:#F1F3F5;color:var(--brand)}
+.icon-btn.on{color:var(--brand)}
+.icon-btn.liked{color:var(--red)}
+.pb-center{display:flex;flex-direction:column;align-items:center;gap:2px}
+.pb-btns{display:flex;align-items:center;gap:8px}
+.play-btn{width:38px;height:38px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;box-shadow:0 4px 12px rgba(14,110,99,.32);transition:.16s}
+.play-btn:hover{background:var(--brand-d);transform:scale(1.05)}
+.play-btn svg{width:21px;height:21px}
+.pb-time{display:none}
+.pb-right{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.pb-src{font-size:11px;color:var(--tx3);background:#F4F6F7;border-radius:9px;padding:2px 8px;white-space:nowrap}
+.vol{width:74px;height:3px;-webkit-appearance:none;appearance:none;background:#E1E5E9;border-radius:3px;outline:none;cursor:pointer}
+.vol::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--brand);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+
+/* ---------------- 歌词页 ---------------- */
+.player{position:fixed;inset:0;background:#0B2B28;color:#fff;z-index:40;transform:translateY(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.player.open{transform:none}
+.pl-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(46px) brightness(.42);transform:scale(1.15);opacity:.85}
+.pl-close{position:absolute;right:20px;top:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.13);color:#fff;display:grid;place-items:center;z-index:3}
+.pl-close:hover{background:rgba(255,255,255,.26);transform:rotate(90deg)}
+.pl-close svg{width:19px;height:19px}
+.pl-body{position:relative;flex:1;display:grid;grid-template-columns:44% 56%;padding:40px 56px 96px;gap:30px;overflow:hidden}
+.pl-left{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.pl-disc{width:min(41vh,300px);aspect-ratio:1;border-radius:50%;overflow:hidden;position:relative;box-shadow:0 22px 60px rgba(0,0,0,.6);animation:spin 26s linear infinite;animation-play-state:paused;border:7px solid rgba(255,255,255,.07)}
+.pl-disc.spin{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pl-disc img{width:100%;height:100%;object-fit:cover}
+.pl-disc::after{content:"";position:absolute;left:50%;top:50%;width:24%;height:24%;transform:translate(-50%,-50%);border-radius:50%;background:rgba(11,43,40,.92);border:2px solid rgba(255,255,255,.14)}
+.pl-title{margin-top:20px;font-size:21px;font-weight:600;letter-spacing:.02em;text-align:center;max-width:92%}
+.pl-artist,.pl-album{font-size:12.5px;color:#9FC9C2;text-align:center}
+.pl-album{color:#7FA9A2;font-size:11.5px}
+.pl-right{overflow:hidden;position:relative;display:flex;align-items:center}
+.pl-right::before,.pl-right::after{content:"";position:absolute;left:0;right:0;height:90px;z-index:2;pointer-events:none}
+.pl-right::before{top:0;background:linear-gradient(#0B2B28,transparent)}
+.pl-right::after{bottom:0;background:linear-gradient(transparent,#0B2B28)}
+.pl-lyric{width:100%;max-height:100%;overflow:auto;padding:42vh 0;scroll-behavior:smooth;text-align:left}
+.pl-lyric::-webkit-scrollbar{width:0}
+.pl-lyric p{margin:0;padding:7px 0;font-size:15px;color:rgba(255,255,255,.42);transition:.28s;line-height:1.5}
+.pl-lyric p.cur{color:#fff;font-size:17.5px;font-weight:600;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.pl-lyric p.ph{color:rgba(255,255,255,.6);font-size:15px}
+
+/* ---------------- 队列 ---------------- */
+.queue{position:fixed;right:0;bottom:78px;width:340px;max-height:60vh;background:var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:12px 0 0 0;box-shadow:-6px -6px 26px rgba(0,0,0,.12);z-index:25;display:none;flex-direction:column;overflow:hidden;color:var(--tx)}
+.queue.open{display:flex}
+.q-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13.5px}
+.q-head span{font-size:11.5px;color:var(--tx3);font-weight:400}
+.q-head button{margin-left:auto;font-size:12px;color:var(--tx2)}
+.q-head button:hover{color:var(--red)}
+.q-list{overflow:auto;flex:1}
+.q-row{display:flex;align-items:center;gap:10px;padding:7px 14px;cursor:pointer;font-size:13px}
+.q-row:hover{background:var(--side)}
+.q-row.on{color:var(--sel-tx);font-weight:600;background:var(--sel)}
+.q-row .qn{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.q-row .qs{font-size:11.5px;color:var(--tx3);white-space:nowrap;max-width:96px;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------------- 菜单/提示 ---------------- */
+.ctxmenu{position:fixed;z-index:60;background:var(--panel);border:1px solid var(--line);border-radius:9px;box-shadow:0 8px 26px rgba(0,0,0,.16);padding:5px;min-width:158px;display:none;color:var(--tx)}
+.ctxmenu.open{display:block}
+.ctxmenu div{padding:7px 11px;border-radius:6px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.ctxmenu div:hover{background:var(--side);color:var(--brand)}
+.ctxmenu div svg{width:15px;height:15px;color:var(--tx2)}
+.ctxmenu hr{border:0;border-top:1px solid var(--line-2);margin:4px 2px}
+.ctxmenu .sub{padding:4px 11px;font-size:11px;color:var(--tx3)}
+.toast{position:fixed;left:50%;bottom:104px;transform:translate(-50%,16px);background:rgba(30,35,41,.92);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;z-index:80;opacity:0;pointer-events:none;transition:.24s;backdrop-filter:blur(6px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{position:fixed;inset:0;background:rgba(12,26,24,.42);z-index:70;display:none;place-items:center;backdrop-filter:blur(3px)}
+.modal.open{display:grid}
+.modal-box{background:var(--panel);border-radius:14px;padding:22px;width:360px;box-shadow:0 20px 60px rgba(0,0,0,.28);color:var(--tx)}
+.modal-box h3{margin:0 0 14px;font-size:16px}
+.modal-box input{width:100%;height:38px;border:1px solid var(--line);border-radius:9px;padding:0 12px;font-size:13.5px;outline:none;font-family:inherit}
+.modal-box input:focus{border-color:var(--brand-l);box-shadow:0 0 0 3px rgba(18,165,148,.13)}
+.modal-box .mb{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.modal-box .mb button{height:34px;padding:0 18px;border-radius:8px;font-size:13px}
+.modal-box .mb .cancel{background:var(--side);color:var(--tx2)}
+.modal-box .mb .ok{background:var(--brand);color:#fff}
+.modal-box .mb .ok:hover{background:var(--brand-d)}
+.modal-box .pl-pick{max-height:230px;overflow:auto;margin-top:6px}
+.modal-box .pl-pick div{padding:9px 12px;border-radius:8px;cursor:pointer;font-size:13.5px;display:flex;align-items:center;gap:8px}
+.modal-box .pl-pick div:hover{background:#F1F3F5;color:var(--brand)}
+
+@media (max-width:1080px){
+  .app{grid-template-columns:64px 1fr}
+  .brand-txt,.nav a span,.nav-sec,.side-foot,.pl-list,.dai-pattern{display:none}
+  .playbar{grid-template-columns:1fr 320px 1fr}
+  .vol{display:none}
+}
+
+/* ---------------- 换肤: 傣族多主题 ---------------- */
+.qcard.q1{background:linear-gradient(135deg,var(--brand),var(--brand-l))}
+.qcard.q2{background:linear-gradient(135deg,var(--gold),var(--gold-l))}
+.qcard.q3{background:linear-gradient(135deg,var(--red),var(--red-d))}
+.qcard.q4{background:linear-gradient(135deg,var(--brand-d),var(--brand))}
+
+/* 皮肤弹层 */
+.skin-pop{position:fixed;top:54px;right:18px;z-index:62;width:190px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 44px rgba(0,0,0,.2);padding:10px;display:none;color:var(--tx)}
+.skin-pop.open{display:block;animation:skinpop .16s ease}
+@keyframes skinpop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.skin-pop-h{font-size:11.5px;color:var(--tx3);letter-spacing:.1em;padding:2px 6px 9px}
+.swatch{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:9px;cursor:pointer;color:var(--tx);font-size:13.5px;transition:.14s}
+.swatch:hover{background:var(--side)}
+.swatch i{width:18px;height:18px;border-radius:50%;background:var(--sw);box-shadow:0 0 0 2px var(--panel),0 2px 6px rgba(0,0,0,.25);flex:none}
+.swatch span{margin-left:2px}
+.swatch.on{background:var(--sel);font-weight:600}
+.swatch.on i{box-shadow:0 0 0 2px var(--sw),0 2px 6px rgba(0,0,0,.28)}
+
+/* banner 底部傣锦饰带 */
+.banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18px;background-image:var(--dai);background-size:36px 36px;opacity:.5;mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)}
+
+/* ============ 主题配色 ============ */
+[data-skin="gold"]{
+  --brand:#B8761E;--brand-d:#8A560F;--brand-l:#D9A441;
+  --gold:#C99A2E;--gold-l:#F0D58A;
+  --red:#B5482E;--red-d:#8E3520;
+  --bg:#FBF6EC;--panel:#FFFDF7;--side:#F5EDDA;
+  --line:#ECDDC4;--line-2:#F3EAD6;
+  --tx:#2A2316;--tx2:#8A7B5C;--tx3:#B6A884;
+  --sel:#FBEFD6;--sel-tx:#B8761E;
+}
+[data-skin="cinnabar"]{
+  --brand:#B23A2E;--brand-d:#8E2A20;--brand-l:#D9543F;
+  --gold:#D8A23B;--gold-l:#EFCF8C;
+  --red:#C8452F;--red-d:#9E3522;
+  --bg:#F8F1EE;--panel:#FFFCFB;--side:#F3E4E0;
+  --line:#EBD8D2;--line-2:#F2E6E2;
+  --tx:#2A1A16;--tx2:#8A6A62;--tx3:#B89A92;
+  --sel:#FBE7E2;--sel-tx:#B23A2E;
+}
+[data-skin="night"]{
+  --brand:#1FB8A6;--brand-d:#0E7C70;--brand-l:#3FD9C6;
+  --gold:#E7C66B;--gold-l:#F4E0A4;
+  --red:#FF7A66;--red-d:#C94E3C;
+  --bg:#0E1518;--panel:#162023;--side:#10171A;
+  --line:#243035;--line-2:#1B252A;
+  --tx:#E4ECEE;--tx2:#9FB0B3;--tx3:#6E8185;
+  --sel:rgba(31,184,166,.16);--sel-tx:#3FD9C6;
+}
+[data-skin="betel"]{
+  --brand:#0F7A6E;--brand-d:#0A5A50;--brand-l:#2BB3A1;
+  --gold:#C9A24B;--gold-l:#E7D29A;
+  --red:#CF5036;--red-d:#A23B26;
+  --bg:#F4F6F4;--panel:#FFFFFF;--side:#EDF1EE;
+  --line:#DCE4DF;--line-2:#E8EFEA;
+  --tx:#20302C;--tx2:#5E726C;--tx3:#93A59F;
+  --sel:#E6F3EF;--sel-tx:#0F7A6E;
+}
+[data-skin="brocade"]{
+  --brand:#0E7C6B;--brand-d:#0A5A4E;--brand-l:#16A493;
+  --gold:#E0B34A;--gold-l:#F2DAA0;
+  --red:#D6457A;--red-d:#A8335E;
+  --bg:#F7F8F6;--panel:#FFFFFF;--side:#EEF2F0;
+  --line:#DFE7E3;--line-2:#EBF1EE;
+  --tx:#1E2A28;--tx2:#61756F;--tx3:#94A6A0;
+  --sel:#E6F4F0;--sel-tx:#0E7C6B;
+}
+[data-skin="night"] .playbar{background:rgba(18,26,29,.9);border-top-color:var(--line)}
+[data-skin="night"] .srow:hover{background:#1B252A}
+[data-skin="night"] .q-row:hover{background:#1B252A}
+[data-skin="night"] .nav a:hover{background:#1B252A}
+
+/* ============================================================
+   傣族元素装饰: 傣锦纹样 / 孔雀眼 / 包金边框
+   ============================================================ */
+
+/* 侧栏品牌区底部傣锦带 */
+.brand{position:relative}
+.brand::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:8px;
+  background-image:var(--dai);background-size:16px 16px;opacity:.24;
+  mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent)}
+
+/* 板块标题右侧的傣锦延伸带 */
+.sec-h::after{content:"";flex:1;height:9px;align-self:center;
+  background-image:var(--dai);background-size:9px 9px;opacity:.18;border-radius:2px;
+  mask-image:linear-gradient(to right,#000,transparent)}
+.sec-h h2{flex:none}
+.sec-h .more{flex:none}
+
+/* 卡片: 内嵌傣锦暗纹 + 悬停浮现包金框 */
+.card .cv::before{content:"";position:absolute;inset:0;background-image:var(--dai);
+  background-size:22px 22px;opacity:.12;pointer-events:none}
+.card .cv::after{content:"";position:absolute;inset:7px;border:1px solid rgba(217,164,65,0);
+  border-radius:inherit;transition:border-color .22s;pointer-events:none}
+.card:hover .cv::after{border-color:rgba(217,164,65,.8)}
+.card.round .cv::after{inset:9px;border-radius:50%}
+
+/* 歌手页头图: 底部傣锦饰带 + 顶部金线 */
+.artist-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:16px;
+  background-image:var(--dai);background-size:16px 16px;opacity:.34;
+  mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.artist-hero::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6;z-index:2}
+
+/* 专辑 / 歌单详情: 封面包金框 + 四角傣锦 */
+.detail .dc{position:relative}
+.detail .dc::after{content:"";position:absolute;inset:0;border:2px solid rgba(217,164,65,.55);
+  border-radius:14px;pointer-events:none;box-shadow:inset 0 0 0 4px rgba(255,255,255,.06)}
+
+/* 播放列表头: 底部细傣锦带 */
+.q-head{position:relative}
+.q-head::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:6px;
+  background-image:var(--dai);background-size:6px 6px;opacity:.2}
+
+/* 歌词页: 顶部傣锦带 + 包金细框 */
+.player::after{content:"";position:absolute;left:0;right:0;top:0;height:10px;
+  background-image:var(--dai);background-size:10px 10px;opacity:.3;z-index:3;pointer-events:none}
+.pl-body::before{content:"";position:absolute;inset:16px;border:1px solid rgba(217,164,65,.26);
+  border-radius:16px;pointer-events:none;z-index:1}
+
+/* 空态: 背后孔雀眼纹样水印 */
+.empty{position:relative}
+.empty::before{content:"";position:absolute;width:132px;height:132px;border-radius:50%;
+  background-image:var(--dai);background-size:44px 44px;opacity:.13;pointer-events:none}
+
+/* 弹窗: 顶部傣锦带 */
+.modal-box{position:relative}
+.modal-box::before{content:"";position:absolute;left:0;right:0;top:0;height:24px;
+  background-image:var(--dai);background-size:12px 12px;opacity:.14;border-radius:14px 14px 0 0;
+  pointer-events:none}
+
+/* 启动页: 底层傣锦暗纹 */
+.boot::before{content:"";position:absolute;inset:0;background-image:var(--dai);
+  background-size:46px 46px;opacity:.09;pointer-events:none}
